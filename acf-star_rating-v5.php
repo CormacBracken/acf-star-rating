@@ -188,8 +188,14 @@ class acf_field_star_rating extends acf_field {
 	
 	function load_value( $value, $post_id, $field ) {
 		
-		return floatval($value);
-		
+		$screen = get_current_screen();
+	
+		if( $screen->id == 'edit-vb_story' ) {
+			return $this->format_value( $value, $post_id, $field );
+		} else {
+			return floatval( $value );
+		}
+
 	}
 	
 	
